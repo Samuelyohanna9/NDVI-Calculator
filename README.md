@@ -1,4 +1,4 @@
-# 🌿 NDVI Calculator
+#  NDVI Calculator
 
 This interactive NDVI (Normalized Difference Vegetation Index) analysis tool processes satellite imagery to assess vegetation health. The app simplifies NDVI calculation and visualization, making it accessible to users without technical expertise.  
 

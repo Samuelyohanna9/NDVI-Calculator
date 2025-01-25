@@ -26,6 +26,5 @@ This interactive NDVI (Normalized Difference Vegetation Index) analysis tool pro
 ## Installation  
 1. Clone this repository:  
    ```bash
-   git clone https://github.com/yourusername/ndvi-analysis-tool.git
-   cd ndvi-analysis-tool
+   https://github.com/Samuelyohanna9/NDVI-Calculator.git
 

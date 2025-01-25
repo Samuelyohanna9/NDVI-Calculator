@@ -28,3 +28,10 @@ This interactive NDVI (Normalized Difference Vegetation Index) analysis tool pro
    ```bash
    https://github.com/Samuelyohanna9/NDVI-Calculator.git
 
+---
+## Satellite Data
+The required satellite data for this project can be downloaded from the following sources:
+- [Landsat 8/9](https://earthexplorer.usgs.gov/)
+- [Sentinel-2](https://scihub.copernicus.eu/)
+
+

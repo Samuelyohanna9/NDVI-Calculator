@@ -27,7 +27,7 @@ def process_bands(red_band_path, nir_band_path):
 def main():
     st.image("banner_ndvi.jpg", use_container_width=True)
 
-    st.title("🌿 Interactive NDVI Calculator")
+    st.title("NDVI Calculator")
     st.markdown("Analyze vegetation health with satellite data.")
     st.markdown("---")
 
@@ -36,7 +36,7 @@ def main():
 
     satellite_choice = st.selectbox("Select Satellite Type", ["Landsat 8/9", "Sentinel-2"])
 
-    st.subheader("📂 Upload Satellite Bands")
+    st.subheader("Upload Satellite Bands")
     if satellite_choice == "Landsat 8/9":
         red_band = st.file_uploader("Upload Band 4 (Red)", type=["tif"])
         nir_band = st.file_uploader("Upload Band 5 (NIR)", type=["tif"])
@@ -115,7 +115,7 @@ def main():
         )
 
     st.markdown("---")
-    st.markdown("🌍 Powered by Streamlit | NDVI Analysis Tool")
+    st.markdown("Powered by Streamlit | NDVI Analysis Tool")
 
 if __name__ == "__main__":
     main()

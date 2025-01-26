@@ -47,9 +47,9 @@ def main():
     classifications = [
         (-1.0, -0.1, "Water"),
         (-0.1, 0.1, "Bare Soil"),
-        (0.1, 0.2, "Sparse Vegetation"),
-        (0.2, 0.4, "Moderate Vegetation"),
-        (0.4, 1.0, "Dense Vegetation"),
+        (0.1, 0.3, "Sparse Vegetation"),
+        (0.3, 0.6, "Moderate Vegetation"),
+        (0.6, 1.0, "Dense Vegetation"),
     ]
 
     if st.button("Calculate NDVI"):
@@ -86,17 +86,28 @@ def main():
         st.plotly_chart(fig, use_container_width=True)
 
     if st.session_state.ndvi is not None and st.button("Produce NDVI Histogram"):
+        # Downscale NDVI for faster processing
         downscale_factor = 10
         ndvi_sampled = st.session_state.ndvi[::downscale_factor, ::downscale_factor].flatten()
         ndvi_sampled = ndvi_sampled[~np.isnan(ndvi_sampled)]
 
-        hist_fig = px.histogram(
-            ndvi_sampled,
-            nbins=50,
-            title="NDVI Value Distribution",
-            labels={"value": "NDVI Value", "count": "Frequency"},
+        # Create bins based on classifications
+        bins = [lower for lower, _, _ in classifications] + [classifications[-1][1]]
+        labels = [label for _, _, label in classifications]
+        ndvi_categories = pd.cut(ndvi_sampled, bins=bins, labels=labels, include_lowest=True)
+
+        # Count frequency of each category
+        category_counts = ndvi_categories.value_counts()
+
+        # Plot the histogram
+        hist_fig = px.bar(
+            category_counts,
+            x=category_counts.index.astype(str),
+            y=category_counts.values,
+            labels={"x": "NDVI Classification", "y": "Frequency"},
+            title="NDVI Classification Distribution",
         )
-        hist_fig.update_layout(bargap=0.1)
+        hist_fig.update_layout(xaxis_title="NDVI Classification", yaxis_title="Frequency")
         st.plotly_chart(hist_fig, use_container_width=True)
 
     if st.session_state.ndvi is not None and st.button("Download NDVI as CSV"):

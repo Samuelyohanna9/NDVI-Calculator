@@ -28,7 +28,7 @@ def main():
     st.image("banner_ndvi.jpg", use_container_width=True)
 
     st.title("NDVI Calculator")
-    st.markdown("Analyze vegetation health with satellite data.")
+    st.markdown("Analyze vegetation cover with satellite data.")
     st.markdown("---")
 
     if "ndvi" not in st.session_state:
